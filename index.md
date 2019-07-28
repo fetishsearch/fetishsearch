@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+## OpenHentai
 
-You can use the [editor on GitHub](https://github.com/fetishsearch/fetishsearch.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+### Overview
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**Goal**: To have a permanent database of hentai doujin & manga etc.
 
-### Markdown
+**Summary**: use peer to peer sharing to replicate complete copy of the hentai database to every peer, whom can read this database. The database will only contain metadata - eg {title, tags, link (torrent, magnet)}, this will reduce the size of the database. Only people from the list of contributers can write to this database.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**Users**: From a user perspective, they visit a website which gives them a javascript client. The client will do peer discovery, and then download the latest version of the database from a peer. While the website is open, the client will remain a peer for other users.
 
-```markdown
-Syntax highlighted code block
+**User Interface**: The user interface will allow users to search for hentai from the database. It will include javascript to download the torrent file. The client will allow extensibility - eg auto-download specific tags.
 
-# Header 1
-## Header 2
-### Header 3
+### Technical Details
 
-- Bulleted
-- List
+**Protocol**
 
-1. Numbered
-2. List
+`GetAll`: returns all patches the peer has
 
-**Bold** and _Italic_ and `Code` text
+`GetSince(date)`: return all patches older than `date`
 
-[Link](url) and ![Image](src)
-```
+**Replicated Data Structure**
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+We replicate immutable patches that represent changes to rows in a relational database. These patches are ordered via the date field and merged together to form the actual database row.
 
-### Jekyll Themes
+| field     | description                |
+|-----------|----------------------------|
+| user      | a public signing key       |
+| table     | table name                 |
+| id        | table row primary key      |
+| date      | date the row was edited    |
+| data      | table data                 |
+| signature | sign data with private key |
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/fetishsearch/fetishsearch.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+**Security**
 
-### Support or Contact
+In order to prevent spam and unwanted edits, we have a list of users. The root user is a special user hardcoded into OpenHentai client, who has the power to edit the `Users table`:
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+| field         | description               |
+|---------------|---------------------------|
+| user          | a public signing key      |
+| tables        | tables this user can edit |
+
+When a user is in this table, they can share patches and get them replicated. When a patch is received from any user not in this table, the patch is ignored.
