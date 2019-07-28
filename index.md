@@ -6,9 +6,9 @@
 
 **Summary**: use peer to peer sharing to replicate complete copy of the hentai database to every peer, whom can read this database. The database will only contain metadata - eg {title, tags, link (torrent, magnet)}, this will reduce the size of the database. Only people from the list of contributers can write to this database.
 
-**Users**: From a user perspective, they visit a website which gives them a javascript client. The client will do peer discovery, and then download the latest version of the database from a peer. While the website is open, the client will remain a peer for other users.
+**Users**: From a user perspective, they visit a website which gives them a javascript client. The client will do peer discovery, and then download the latest version of the database from a peer. While the website is open, the client will remain a peer for other users. Using local storage means revisiting the website will only need to fetch updates since the web page was closed.
 
-**User Interface**: The user interface will allow users to search for hentai from the database. It will include javascript to download the torrent file. The client will allow extensibility - eg auto-download specific tags. The client will let users label and star items, however these will be local - they will not be shared. This means you can't see average ratings of an item.
+**User Interface**: The user interface will allow users to search for hentai from the database. It will include javascript to download the torrent file. The client will allow extensibility - eg auto-download specific tags. The client will let users label and star items, however these will be local - they will not be shared. This means you can't see average ratings by all users of an item.
 
 ### Technical Details
 
