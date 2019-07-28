@@ -8,7 +8,7 @@
 
 **Users**: From a user perspective, they visit a website which gives them a javascript client. The client will do peer discovery, and then download the latest version of the database from a peer. While the website is open, the client will remain a peer for other users.
 
-**User Interface**: The user interface will allow users to search for hentai from the database. It will include javascript to download the torrent file. The client will allow extensibility - eg auto-download specific tags.
+**User Interface**: The user interface will allow users to search for hentai from the database. It will include javascript to download the torrent file. The client will allow extensibility - eg auto-download specific tags. The client will let users label and star items, however these will be local - they will not be shared. This means you can't see average ratings of an item.
 
 ### Technical Details
 
