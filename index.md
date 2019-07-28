@@ -18,6 +18,8 @@
 
 `GetSince(date)`: get all patches newer than `date`
 
+`PushPatch(patch)`: receive patch, this helps increase the rate of seeding changes
+
 **Replicated Data Structure**
 
 We replicate immutable patches that represent changes to rows in a relational database. These patches are ordered via the date field and merged together to form the actual database row.
