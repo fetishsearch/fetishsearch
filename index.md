@@ -43,3 +43,9 @@ In order to prevent spam and unwanted edits, we have a list of users. The root u
 | tables        | tables this user can edit |
 
 When a user is in this table, they can share patches and get them replicated. When a patch is received from any user not in this table, the patch is ignored.
+
+### Implementation Details
+
+-   How to do peer to peer in browser? Use https://github.com/webtorrent/webtorrent
+-   How to host the client pages? Create a table `files(file name, binary)`
+-   How big is this database? If we assume 100k hentais * (100 character names + 20 tags + 50 character magnet) = 17MB
