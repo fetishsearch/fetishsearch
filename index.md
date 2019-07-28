@@ -14,9 +14,9 @@
 
 **Protocol**
 
-`GetAll`: returns all patches the peer has
+`GetAll`: get all patches the peer has
 
-`GetSince(date)`: return all patches older than `date`
+`GetSince(date)`: get all patches newer than `date`
 
 **Replicated Data Structure**
 
